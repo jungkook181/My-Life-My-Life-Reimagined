@@ -1,15 +1,25 @@
-/* =================================
+/* ==========================================
    MY LIFE, MY LIFE
-   Visual Identity
-================================= */
+   CONCEPT 02 — THE GOLDEN ARCHIVE
+   Celestial × Editorial × Antique
+========================================== */
 
 :root {
-    --plum: #1b1423;
-    --deep-plum: #130e1a;
-    --gold: #d5bd8b;
-    --soft-gold: #a99268;
-    --lavender: #b9a5c5;
+    --obsidian: #17121e;
+    --plum: #211827;
+    --wine: #432738;
+    --mauve: #806a83;
+
+    --gold: #c6a875;
+    --pale-gold: #e0cca5;
+    --ivory: #e9deca;
+    --muted: #aa9baa;
+
+    --gold-line: rgba(198, 168, 117, 0.48);
+    --gold-glow: rgba(198, 168, 117, 0.14);
 }
+
+/* RESET */
 
 * {
     margin: 0;
@@ -17,55 +27,124 @@
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+    background: var(--obsidian);
+}
+
 body {
-    background: var(--deep-plum);
-    color: var(--gold);
+    min-height: 100vh;
+    background: var(--obsidian);
+    color: var(--ivory);
     font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 [hidden] {
     display: none !important;
 }
 
-/* INTRO SCREEN */
+/* INTRODUCTION */
 
 .intro-screen {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 100vh;
     min-height: 100svh;
     width: 100%;
-    position: relative;
-    overflow: hidden;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    padding: 55px 24px 100px;
+
     background:
         radial-gradient(
             ellipse at 50% 42%,
-            #382540 0%,
-            #261b31 38%,
-            #1b1423 72%,
-            #120d19 100%
+            rgba(128, 106, 131, 0.23),
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 12% 90%,
+            rgba(67, 39, 56, 0.5),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 90% 8%,
+            rgba(67, 39, 56, 0.35),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #261c2b,
+            var(--obsidian) 65%,
+            #120e17
         );
+}
+
+/* PAPER-LIKE ATMOSPHERE */
+
+.intro-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    opacity: 0.15;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(233, 222, 202, 0.035) 4px
+        );
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+/* ORNAMENTAL FRAME */
+
+.intro-screen::after {
+    content: "";
+    position: absolute;
+
+    inset: 19px;
+    pointer-events: none;
+
+    border: 1px solid var(--gold-line);
+
+    outline: 1px solid rgba(198, 168, 117, 0.14);
+    outline-offset: 6px;
 }
 
 /* AMBIENT LIGHT */
 
 .ambient-glow {
     position: absolute;
-    width: 65vw;
-    height: 65vw;
-    max-width: 650px;
-    max-height: 650px;
+    z-index: -1;
+
+    width: min(75vw, 700px);
+    aspect-ratio: 1;
+
     border-radius: 50%;
 
     background: radial-gradient(
         circle,
-        rgba(191, 155, 108, 0.075),
+        rgba(198, 168, 117, 0.10),
+        rgba(128, 106, 131, 0.07) 38%,
         transparent 70%
     );
 
-    filter: blur(25px);
+    filter: blur(35px);
     pointer-events: none;
 }
 
@@ -73,37 +152,46 @@ body {
 
 .star {
     position: absolute;
-    color: var(--gold);
+    z-index: 1;
+
+    color: var(--pale-gold);
+    font-family: 'Cormorant Garamond', serif;
+
     pointer-events: none;
-    font-family: serif;
+
+    text-shadow: 0 0 15px var(--gold-glow);
 }
 
 .star-one {
     top: 15%;
-    left: 16%;
-    font-size: 25px;
-    opacity: 0.8;
+    left: 13%;
+
+    font-size: 31px;
+    opacity: 0.85;
 }
 
 .star-two {
-    top: 27%;
-    right: 17%;
-    font-size: 15px;
-    opacity: 0.55;
+    top: 25%;
+    right: 14%;
+
+    font-size: 18px;
+    opacity: 0.65;
 }
 
 .star-three {
-    bottom: 24%;
-    left: 12%;
-    font-size: 20px;
-    opacity: 0.6;
+    bottom: 23%;
+    left: 17%;
+
+    font-size: 25px;
+    opacity: 0.65;
 }
 
 .star-four {
-    bottom: 15%;
-    right: 19%;
-    font-size: 27px;
-    opacity: 0.8;
+    bottom: 17%;
+    right: 13%;
+
+    font-size: 34px;
+    opacity: 0.85;
 }
 
 /* MAIN CONTENT */
@@ -113,68 +201,135 @@ body {
     z-index: 2;
 
     width: 100%;
-    padding: 30px 20px;
+    max-width: 760px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
     text-align: center;
+}
+
+/* EDITORIAL TOP LABEL */
+
+.intro-content::before {
+    content: "A PERSONAL COLLECTION  ·  EST. 2026";
+
+    display: block;
+    margin-bottom: 35px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+
+    letter-spacing: 4px;
+    color: var(--gold);
+
+    opacity: 0.82;
 }
 
 /* TITLE */
 
 .main-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 9vw, 76px);
-    font-weight: 300;
-    letter-spacing: 1.5px;
+    position: relative;
 
-    color: #e0cca5;
-    text-shadow: 0 0 35px rgba(213, 189, 139, 0.13);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 9vw, 88px);
+    font-weight: 300;
+
+    line-height: 0.98;
+    letter-spacing: -1.5px;
+
+    color: var(--ivory);
+
+    text-shadow:
+        0 2px 30px rgba(224, 204, 165, 0.10);
+}
+
+/* ORNAMENT UNDER TITLE */
+
+.main-title::after {
+    content: "✧";
+
+    display: block;
+
+    margin: 27px auto 0;
+
+    font-family: serif;
+    font-size: 19px;
+
+    font-weight: 300;
+    color: var(--gold);
 }
 
 /* DEDICATION */
 
 .dedication {
-    margin-top: 24px;
-    margin-bottom: 55px;
+    margin-top: 30px;
+    margin-bottom: 48px;
 
     font-family: 'Cormorant Garamond', serif;
-    font-size: 23px;
-    font-style: italic;
+    font-size: clamp(21px, 4vw, 27px);
 
-    color: var(--lavender);
+    font-style: italic;
+    font-weight: 400;
+
+    letter-spacing: 0.4px;
+    color: var(--pale-gold);
 }
 
 /* ENTER BUTTON */
 
 .enter-button {
-    min-width: 205px;
-    padding: 16px 23px;
+    position: relative;
+    overflow: hidden;
 
-    background: rgba(255,255,255,0.015);
-    border: 1px solid rgba(213,189,139,0.65);
+    min-width: 225px;
+    padding: 17px 27px;
 
-    color: var(--gold);
+    border: 1px solid var(--gold-line);
+    background: rgba(198, 168, 117, 0.035);
+
+    color: var(--ivory);
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-size: 9px;
+    font-weight: 400;
+
+    letter-spacing: 3.5px;
 
     cursor: pointer;
-    transition: all 0.35s ease;
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
 }
 
 .enter-button:hover {
-    background: rgba(213,189,139,0.09);
-    box-shadow: 0 0 25px rgba(213,189,139,0.12);
+    background: rgba(198, 168, 117, 0.10);
+
+    border-color: var(--pale-gold);
+
+    box-shadow:
+        0 0 30px rgba(198, 168, 117, 0.10);
+
+    transform: translateY(-2px);
+}
+
+.enter-button:focus-visible {
+    outline: 2px solid var(--pale-gold);
+    outline-offset: 5px;
 }
 
 /* SIGNATURE */
 
 .signature {
     position: absolute;
-    bottom: 35px;
+    z-index: 2;
+
+    bottom: 42px;
     left: 0;
     right: 0;
 
@@ -182,47 +337,115 @@ body {
 
     font-family: 'Cormorant Garamond', serif;
     font-size: 14px;
-    line-height: 1.8;
 
-    color: rgba(213,189,139,0.76);
+    font-weight: 400;
+    line-height: 1.75;
+
+    letter-spacing: 0.5px;
+
+    color: rgba(224, 204, 165, 0.82);
+}
+
+.signature p + p {
+    color: rgba(170, 155, 170, 0.9);
 }
 
 /* TRANSITION */
 
 .intro-screen.is-leaving {
     opacity: 0;
-    transition: opacity 0.55s ease;
+    transition: opacity 0.65s ease;
 }
 
-/* MAIN HOMEPAGE */
+/* HOMEPAGE PLACEHOLDER */
 
 .museum-screen {
+    min-height: 100vh;
     min-height: 100svh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    padding: 35px;
+
     text-align: center;
-    padding: 30px;
 
     background:
         radial-gradient(
             ellipse at center,
-            #382540,
-            #1b1423 70%,
-            #120d19
+            var(--wine),
+            var(--plum) 55%,
+            var(--obsidian)
         );
 }
 
-/* MOBILE */
+/* RESPONSIVE DESIGN */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+
+    .intro-screen {
+        padding: 45px 24px 105px;
+    }
+
+    .intro-screen::after {
+        inset: 13px;
+        outline-offset: 4px;
+    }
+
+    .intro-content::before {
+        font-size: 8px;
+        letter-spacing: 2.5px;
+        margin-bottom: 32px;
+    }
+
     .main-title {
-        letter-spacing: 0.5px;
+        letter-spacing: -0.8px;
+    }
+
+    .dedication {
+        margin-top: 25px;
+        margin-bottom: 43px;
+    }
+
+    .enter-button {
+        min-width: 210px;
+        padding: 16px 20px;
+    }
+
+    .star-one {
+        top: 13%;
+        left: 11%;
+    }
+
+    .star-two {
+        top: 29%;
+        right: 10%;
+    }
+
+    .star-three {
+        bottom: 24%;
+        left: 10%;
+    }
+
+    .star-four {
+        bottom: 16%;
+        right: 10%;
     }
 
     .signature {
-        bottom: 25px;
+        bottom: 30px;
+        font-size: 13px;
     }
 }
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+       }
