@@ -1,26 +1,27 @@
-    
-/* ==========================================
+
+/* =========================================
    MY LIFE, MY LIFE
-   CONCEPT 02 — THE GOLDEN ARCHIVE
-   Celestial × Editorial × Antique
-========================================== */
+   THE GRAND ARCHIVE — VISUAL IDENTITY
+   ========================================= */
+
+/* 01 — DESIGN FOUNDATION */
 
 :root {
-    --obsidian: #17121e;
-    --plum: #211827;
-    --wine: #432738;
-    --mauve: #806a83;
+    --night: #17121e;
+    --plum: #251927;
+    --deep-plum: #302031;
+    --wine: #452b3d;
 
     --gold: #c6a875;
-    --pale-gold: #e0cca5;
-    --ivory: #e9deca;
-    --muted: #aa9baa;
+    --soft-gold: #e0c99d;
+    --muted-gold: #927650;
 
-    --gold-line: rgba(198, 168, 117, 0.48);
-    --gold-glow: rgba(198, 168, 117, 0.14);
+    --ivory: #eee5d7;
+    --muted-ivory: #b9a99d;
+
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
 }
-
-/* RESET */
 
 * {
     margin: 0;
@@ -30,423 +31,714 @@
 
 html {
     min-height: 100%;
-    background: var(--obsidian);
+    background: var(--night);
 }
 
 body {
     min-height: 100vh;
-    background: var(--obsidian);
+    min-height: 100svh;
+    font-family: var(--sans);
+    background: var(--night);
     color: var(--ivory);
-    font-family: 'Montserrat', sans-serif;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-[hidden] {
-    display: none !important;
-}
 
-/* INTRODUCTION */
+/* 02 — MAIN SCREEN */
 
 .intro-screen {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
-
-    min-height: 100vh;
-    min-height: 100svh;
-    width: 100%;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 
-    padding: 55px 24px 100px;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    padding:
+        max(34px, env(safe-area-inset-top))
+        8%
+        max(28px, env(safe-area-inset-bottom));
+
+    overflow: hidden;
 
     background:
         radial-gradient(
             ellipse at 50% 42%,
-            rgba(128, 106, 131, 0.23),
-            transparent 42%
+            rgba(105, 66, 91, 0.28),
+            transparent 48%
         ),
         radial-gradient(
-            ellipse at 12% 90%,
-            rgba(67, 39, 56, 0.5),
-            transparent 45%
-        ),
-        radial-gradient(
-            ellipse at 90% 8%,
-            rgba(67, 39, 56, 0.35),
-            transparent 42%
+            ellipse at 90% 90%,
+            rgba(112, 76, 65, 0.12),
+            transparent 38%
         ),
         linear-gradient(
             145deg,
-            #261c2b,
-            var(--obsidian) 65%,
-            #120e17
+            #211724 0%,
+            #19131e 48%,
+            #241724 100%
         );
 }
 
-/* PAPER-LIKE ATMOSPHERE */
 
-.intro-screen::before {
-    content: "";
+/* 03 — ATMOSPHERE */
+
+.background-layer {
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-
-    opacity: 0.15;
-
-    background-image:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 3px,
-            rgba(233, 222, 202, 0.035) 4px
-        );
-
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 90%
-    );
+    overflow: hidden;
 }
-
-/* ORNAMENTAL FRAME */
-
-.intro-screen::after {
-    content: "";
-    position: absolute;
-
-    inset: 19px;
-    pointer-events: none;
-
-    border: 1px solid var(--gold-line);
-
-    outline: 1px solid rgba(198, 168, 117, 0.14);
-    outline-offset: 6px;
-}
-
-/* AMBIENT LIGHT */
 
 .ambient-glow {
     position: absolute;
-    z-index: -1;
+    width: 75vw;
+    height: 75vw;
+    max-width: 650px;
+    max-height: 650px;
 
-    width: min(75vw, 700px);
-    aspect-ratio: 1;
+    top: 18%;
+    left: 50%;
+
+    transform: translateX(-50%);
 
     border-radius: 50%;
 
-    background: radial-gradient(
-        circle,
-        rgba(198, 168, 117, 0.10),
-        rgba(128, 106, 131, 0.07) 38%,
-        transparent 70%
-    );
+    background: rgba(151, 100, 127, 0.09);
+    filter: blur(90px);
+}
 
-    filter: blur(35px);
+.grain-overlay {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.12;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+
     pointer-events: none;
 }
 
-/* STARS */
 
-.star {
+/* 04 — CELESTIAL DETAILS */
+
+.celestial-layer {
     position: absolute;
-    z-index: 1;
-
-    color: var(--pale-gold);
-    font-family: 'Cormorant Garamond', serif;
-
+    inset: 0;
+    z-index: 0;
     pointer-events: none;
+    overflow: hidden;
+}
 
-    text-shadow: 0 0 15px var(--gold-glow);
+.celestial-star {
+    position: absolute;
+    color: var(--soft-gold);
+    font-family: var(--serif);
+    font-weight: 300;
+    opacity: 0.72;
 }
 
 .star-one {
-    top: 15%;
-    left: 13%;
-
-    font-size: 31px;
-    opacity: 0.85;
+    top: 20%;
+    left: 12%;
+    font-size: 23px;
 }
 
 .star-two {
-    top: 25%;
-    right: 14%;
-
-    font-size: 18px;
-    opacity: 0.65;
+    top: 32%;
+    right: 13%;
+    font-size: 15px;
+    opacity: 0.5;
 }
 
 .star-three {
-    bottom: 23%;
-    left: 17%;
-
-    font-size: 25px;
-    opacity: 0.65;
+    bottom: 25%;
+    left: 19%;
+    font-size: 28px;
+    opacity: 0.45;
 }
 
 .star-four {
-    bottom: 17%;
-    right: 13%;
-
-    font-size: 34px;
-    opacity: 0.85;
+    bottom: 19%;
+    right: 16%;
+    font-size: 20px;
 }
 
-/* MAIN CONTENT */
+.royal-crown {
+    position: absolute;
+    top: 13%;
+    left: 50%;
 
-.intro-content {
+    transform: translateX(-50%);
+
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 25px;
+
+    opacity: 0.78;
+}
+
+.orbit {
+    position: absolute;
+    left: 50%;
+    top: 43%;
+
+    width: min(78vw, 540px);
+    aspect-ratio: 1;
+
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(198, 168, 117, 0.09);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: min(78vw, 540px);
+}
+
+.orbit-two {
+    width: min(88vw, 610px);
+    border-color: rgba(198, 168, 117, 0.045);
+}
+
+
+/* 05 — ARCHIVE FRAME */
+
+.archive-frame {
+    position: absolute;
+    inset: 17px;
+
+    border: 1px solid rgba(198, 168, 117, 0.22);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.corner {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+
+    border-color: var(--gold);
+    border-style: solid;
+
+    opacity: 0.7;
+}
+
+.corner-top-left {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+}
+
+.corner-top-right {
+    top: -1px;
+    right: -1px;
+    border-width: 1px 1px 0 0;
+}
+
+.corner-bottom-left {
+    bottom: -1px;
+    left: -1px;
+    border-width: 0 0 1px 1px;
+}
+
+.corner-bottom-right {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+}
+
+
+/* 06 — HEADER */
+
+.archive-header {
     position: relative;
     z-index: 2;
 
-    width: 100%;
-    max-width: 760px;
-
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 
-    text-align: center;
+    gap: 12px;
+    padding: 8px 5px;
 }
 
-/* EDITORIAL TOP LABEL */
+.archive-label,
+.archive-edition {
+    font-family: var(--sans);
+    font-size: 8px;
+    font-weight: 400;
 
-.intro-content::before {
-    content: "A PERSONAL COLLECTION  ·  EST. 2026";
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+}
 
-    display: block;
-    margin-bottom: 35px;
+.archive-label {
+    color: var(--soft-gold);
+}
 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
+.archive-edition {
+    color: var(--muted-ivory);
+    letter-spacing: 1.2px;
+    text-align: right;
+}
+
+
+/* 07 — HERO COMPOSITION */
+
+.hero-composition {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.hero-main {
+    grid-column: 2;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-eyebrow {
+    margin-bottom: 22px;
+
+    color: var(--muted-gold);
+
+    font-family: var(--sans);
+    font-size: 8px;
     font-weight: 400;
 
     letter-spacing: 4px;
-    color: var(--gold);
-
-    opacity: 0.82;
+    text-transform: uppercase;
 }
-
-/* TITLE */
 
 .main-title {
-    position: relative;
-
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 9vw, 88px);
-    font-weight: 300;
-
-    line-height: 0.98;
-    letter-spacing: -1.5px;
-
     color: var(--ivory);
 
-    text-shadow:
-        0 2px 30px rgba(224, 204, 165, 0.10);
+    font-family: var(--serif);
+    font-size: clamp(54px, 12vw, 112px);
+    font-weight: 300;
+
+    line-height: 0.83;
+    letter-spacing: -2.5px;
 }
 
-/* ORNAMENT UNDER TITLE */
-
-.main-title::after {
-    content: "✧";
-
+.main-title span {
     display: block;
 
-    margin: 27px auto 0;
+    margin-top: 12px;
 
-    font-family: serif;
-    font-size: 19px;
-
+    color: var(--soft-gold);
+    font-style: italic;
     font-weight: 300;
-    color: var(--gold);
 }
 
-/* DEDICATION */
+
+/* 08 — TITLE ORNAMENT */
+
+.title-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+    margin: 30px auto 22px;
+}
+
+.title-ornament span:not(.ornament-star) {
+    width: 47px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--muted-gold)
+    );
+}
+
+.title-ornament span:last-child {
+    transform: rotate(180deg);
+}
+
+.ornament-star {
+    color: var(--gold);
+    font-size: 17px;
+}
 
 .dedication {
-    margin-top: 30px;
-    margin-bottom: 48px;
+    color: var(--muted-ivory);
 
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(21px, 4vw, 27px);
-
-    font-style: italic;
+    font-family: var(--serif);
+    font-size: clamp(19px, 4vw, 27px);
     font-weight: 400;
+    font-style: italic;
 
-    letter-spacing: 0.4px;
-    color: var(--pale-gold);
+    letter-spacing: 0.3px;
 }
 
-/* ENTER BUTTON */
+
+/* 09 — ENTER BUTTON */
 
 .enter-button {
     position: relative;
-    overflow: hidden;
 
-    min-width: 225px;
-    padding: 17px 27px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    border: 1px solid var(--gold-line);
+    gap: 19px;
+
+    min-width: 210px;
+    margin-top: 48px;
+    padding: 16px 23px;
+
+    border: 1px solid rgba(198, 168, 117, 0.65);
+    border-radius: 0;
+
     background: rgba(198, 168, 117, 0.035);
 
-    color: var(--ivory);
+    color: var(--soft-gold);
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--sans);
     font-size: 9px;
     font-weight: 400;
 
-    letter-spacing: 3.5px;
+    letter-spacing: 2.8px;
 
     cursor: pointer;
 
     transition:
         background 0.35s ease,
         border-color 0.35s ease,
-        box-shadow 0.35s ease,
+        color 0.35s ease,
         transform 0.35s ease;
 }
 
 .enter-button:hover {
-    background: rgba(198, 168, 117, 0.10);
-
-    border-color: var(--pale-gold);
-
-    box-shadow:
-        0 0 30px rgba(198, 168, 117, 0.10);
-
+    background: rgba(198, 168, 117, 0.12);
+    border-color: var(--soft-gold);
+    color: var(--ivory);
     transform: translateY(-2px);
 }
 
+.enter-button:active {
+    transform: translateY(0);
+}
+
 .enter-button:focus-visible {
-    outline: 2px solid var(--pale-gold);
+    outline: 2px solid var(--soft-gold);
     outline-offset: 5px;
 }
 
-/* SIGNATURE */
+.button-star {
+    font-size: 15px;
+    line-height: 1;
+}
 
-.signature {
+
+/* 10 — SIDE ELEMENTS */
+
+.hero-side-note {
     position: absolute;
-    z-index: 2;
-
-    bottom: 42px;
     left: 0;
-    right: 0;
-
-    text-align: center;
-
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-
-    font-weight: 400;
-    line-height: 1.75;
-
-    letter-spacing: 0.5px;
-
-    color: rgba(224, 204, 165, 0.82);
-}
-
-.signature p + p {
-    color: rgba(170, 155, 170, 0.9);
-}
-
-/* TRANSITION */
-
-.intro-screen.is-leaving {
-    opacity: 0;
-    transition: opacity 0.65s ease;
-}
-
-/* HOMEPAGE PLACEHOLDER */
-
-.museum-screen {
-    min-height: 100vh;
-    min-height: 100svh;
+    top: 50%;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 13px;
 
-    padding: 35px;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            var(--wine),
-            var(--plum) 55%,
-            var(--obsidian)
-        );
+    transform: translateY(-50%);
 }
 
-/* RESPONSIVE DESIGN */
+.side-line {
+    width: 28px;
+    height: 1px;
+    background: var(--muted-gold);
+}
+
+.hero-side-note p {
+    color: var(--muted-ivory);
+
+    font-size: 7px;
+    letter-spacing: 2px;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.hero-side-number {
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 13px;
+
+    transform: translateY(-50%);
+
+    color: var(--muted-gold);
+    font-family: var(--serif);
+}
+
+.hero-side-number span:first-child {
+    font-size: 25px;
+    font-style: italic;
+}
+
+.hero-side-number span:nth-child(2) {
+    font-family: var(--sans);
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.hero-side-number span:last-child {
+    font-size: 18px;
+}
+
+
+/* 11 — FOOTER */
+
+.archive-footer {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 14px;
+    text-align: center;
+}
+
+.footer-divider {
+    width: 90px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--muted-gold),
+        transparent
+    );
+}
+
+.signature {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px 27px;
+}
+
+.signature p {
+    color: var(--soft-gold);
+
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 400;
+
+    letter-spacing: 0.4px;
+}
+
+.footer-note {
+    color: rgba(185, 169, 157, 0.55);
+
+    font-size: 7px;
+    font-weight: 400;
+
+    letter-spacing: 2.5px;
+}
+
+
+/* 12 — MOBILE LAYOUT */
 
 @media (max-width: 600px) {
 
     .intro-screen {
-        padding: 45px 24px 105px;
+        padding:
+            max(35px, env(safe-area-inset-top))
+            9%
+            max(32px, env(safe-area-inset-bottom));
     }
 
-    .intro-screen::after {
-        inset: 13px;
-        outline-offset: 4px;
+    .archive-frame {
+        inset: 12px;
     }
 
-    .intro-content::before {
-        font-size: 8px;
-        letter-spacing: 2.5px;
-        margin-bottom: 32px;
+    .archive-header {
+        align-items: flex-start;
+    }
+
+    .archive-label,
+    .archive-edition {
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-composition {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        min-height: 390px;
+    }
+
+    .hero-main {
+        width: 100%;
+        max-width: 430px;
+    }
+
+    .hero-eyebrow {
+        font-size: 7px;
+        letter-spacing: 3px;
+        margin-bottom: 24px;
     }
 
     .main-title {
-        letter-spacing: -0.8px;
+        font-size: clamp(52px, 13vw, 76px);
+        letter-spacing: -1.8px;
+    }
+
+    .title-ornament {
+        margin: 27px auto 19px;
     }
 
     .dedication {
-        margin-top: 25px;
-        margin-bottom: 43px;
+        font-size: 22px;
     }
 
     .enter-button {
-        min-width: 210px;
-        padding: 16px 20px;
+        min-width: 205px;
+        margin-top: 42px;
+        padding: 15px 19px;
+        font-size: 8px;
+    }
+
+    .hero-side-note {
+        left: -8px;
+    }
+
+    .hero-side-note p {
+        font-size: 6px;
+    }
+
+    .hero-side-number {
+        right: -7px;
+    }
+
+    .hero-side-number span:first-child {
+        font-size: 19px;
+    }
+
+    .hero-side-number span:last-child {
+        font-size: 15px;
+    }
+
+    .orbit {
+        top: 47%;
+    }
+
+    .royal-crown {
+        top: 15%;
     }
 
     .star-one {
-        top: 13%;
-        left: 11%;
+        top: 24%;
+        left: 12%;
     }
 
     .star-two {
-        top: 29%;
-        right: 10%;
+        top: 36%;
+        right: 12%;
     }
 
     .star-three {
-        bottom: 24%;
-        left: 10%;
+        bottom: 28%;
+        left: 14%;
     }
 
     .star-four {
-        bottom: 16%;
-        right: 10%;
+        bottom: 23%;
+        right: 13%;
     }
 
     .signature {
-        bottom: 30px;
-        font-size: 13px;
+        gap: 5px 18px;
+    }
+
+    .signature p {
+        font-size: 14px;
+    }
+
+    .footer-note {
+        font-size: 6px;
+        letter-spacing: 1.8px;
     }
 }
 
-/* ACCESSIBILITY */
+
+/* 13 — SHORT SCREENS */
+
+@media (max-height: 650px) {
+
+    .intro-screen {
+        padding-top: 25px;
+        padding-bottom: 23px;
+    }
+
+    .hero-composition {
+        min-height: 300px;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    .title-ornament {
+        margin-top: 18px;
+        margin-bottom: 13px;
+    }
+
+    .enter-button {
+        margin-top: 27px;
+    }
+
+    .archive-footer {
+        gap: 9px;
+    }
+
+    .royal-crown {
+        top: 10%;
+    }
+}
+
+
+/* 14 — REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }
